@@ -4,7 +4,10 @@ import { AlbumsListComponent } from './albums/albums-list/albums-list.component'
 import { RouterModule, Routes }from '@angular/router';
 
 const routes: Routes = [
-  { path: 'albums', component: AlbumsListComponent }
+  { 
+    path: 'albums', 
+    component: AlbumsListComponent 
+  }
 ];
 
 @NgModule({
