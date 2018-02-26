@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {MatButtonModule, MatToolbarModule} from '@angular/material';
 
 @Component({
@@ -8,9 +8,16 @@ import {MatButtonModule, MatToolbarModule} from '@angular/material';
 })
 export class ToolbarComponent implements OnInit {
 
+  @Output()
+  navToggle = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleNav(){
+    this.navToggle.emit();
   }
 
 }

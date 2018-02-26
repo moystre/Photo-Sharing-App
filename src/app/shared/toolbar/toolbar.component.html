@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-raised-button color="accent">CliCK</button>
-    <span>Custom Toolbar</span>
+    <button mat-mini-fab 
+    color="accent" 
+    (click)="toggleNav()">
+    <mat-icon>list</mat-icon></button>
+    <span style="margin-left: 10px">Custom Toolbar</span>
   </mat-toolbar-row>
+  </mat-toolbar>
