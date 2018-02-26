@@ -10,6 +10,7 @@ import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 export class AppComponent implements OnDestroy {
   title = 'app';
   navBarOpen = true;
+  mode = 'side';
   watcher: Subscription;
 
   routes = [
@@ -38,10 +39,14 @@ export class AppComponent implements OnDestroy {
 
   loadMobileContent(){
     console.log('mobile view');
+    this.navBarOpen = false;
+    this.mode = 'over';
   }
 
   loadDashBoardContent(){
     console.log('large view');
-  }
+    this.navBarOpen = true;
+    this.mode = 'side';
+    }
   
 }
