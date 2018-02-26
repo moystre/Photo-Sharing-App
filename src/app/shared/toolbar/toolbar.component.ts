@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {MatButtonModule, MatToolbarModule} from '@angular/material';
 
 @Component({
-  selector: 'app-toolbar',
+  selector: 'psa-toolbar',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
