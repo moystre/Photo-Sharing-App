@@ -2,8 +2,10 @@
     <mat-sidenav mode="side" 
     [opened]="navBarOpen">
     <mat-nav-list>
-            <a mat-list-item routerLink = "/"><psa-margin-icon [iconName]="'home'"></psa-margin-icon>Home</a>
-            <a mat-list-item routerLink = "/albums"><psa-margin-icon [iconName]="'folder'"></psa-margin-icon>Albums</a>
+            <a *ngFor="let route of routes" 
+            mat-list-item [routerLink] = "route.route">
+            <psa-margin-icon [iconName]="route.icon">
+            </psa-margin-icon>{{route.title}}</a>
          </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
