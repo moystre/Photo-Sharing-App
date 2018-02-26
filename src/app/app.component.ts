@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  navBarOpen = false;
+  navBarOpen = true;
 
   toggleNav(){
     this.navBarOpen = !this.navBarOpen;
