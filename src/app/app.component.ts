@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 
 @Component({
   selector: 'psa-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'app';
   navBarOpen = true;
+  watcher: Subscription;
 
   routes = [
     {route: '/', title: 'Home', icon: 'home'},
@@ -15,8 +18,30 @@ export class AppComponent {
     {route: '/users', title: 'Users', icon: 'event'}
   ]
 
+  constructor(media: ObservableMedia){
+    this.watcher = media.subscribe((change: MediaChange) => {
+      if(change.mqAlias === 'xs'){
+        this.loadMobileContent();
+      } else {
+          this.loadDashBoardContent();
+      }
+    });
+  }
+
+  ngOnDestroy(){
+    this.navBarOpen = !this.navBarOpen;
+  }
+
   toggleNav(){
     this.navBarOpen = !this.navBarOpen;
+  }
+
+  loadMobileContent(){
+    console.log('mobile view');
+  }
+
+  loadDashBoardContent(){
+    console.log('large view');
   }
   
 }
