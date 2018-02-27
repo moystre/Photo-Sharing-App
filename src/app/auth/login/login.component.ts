@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'psa-login',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  //access point to AngularFireAuth
+  constructor(private fireAuth: AngularFireAuth) { }
 
   ngOnInit() {
+    this.fireAuth.auth.createUserAndRetrieveDataWithEmailAndPassword('zebrakac@zxcds.dk', '123ss456')
+    //using promise
+    .then(user => console.log(user));
   }
 
 }
