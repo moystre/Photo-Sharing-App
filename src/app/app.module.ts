@@ -10,6 +10,9 @@ import { SharedModule } from './shared/shared.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,7 +26,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     SharedModule,
     MatListModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
