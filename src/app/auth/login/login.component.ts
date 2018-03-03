@@ -1,3 +1,4 @@
+import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -9,12 +10,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LoginComponent implements OnInit {
 
   //access point to AngularFireAuth
-  constructor(private fireAuth: AngularFireAuth) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.fireAuth.auth.createUserAndRetrieveDataWithEmailAndPassword('zebrakac@zxcds.dk', '123ss456')
-    //using promise
-    .then(user => console.log(user));
+    this.authService.login('rarara@dda.ds', '12xzczxcASD...3345655')
+    .then(user => console.log(user))
+    .catch(error => console.log(error));
   }
-
 }

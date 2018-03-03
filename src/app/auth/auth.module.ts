@@ -1,3 +1,4 @@
+import { AuthService } from './shared/auth.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -8,6 +9,7 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     AngularFireAuthModule
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent],
+  providers: [AuthService]
 })
 export class AuthModule { }
