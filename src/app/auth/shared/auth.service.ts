@@ -1,7 +1,8 @@
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/operator/map';
+import 'rxjs/add/operator/map';
+// import { User } from './user';
 
 @Injectable()
 export class AuthService {
@@ -9,7 +10,7 @@ export class AuthService {
   constructor(private fireAuth: AngularFireAuth) { }
 
   login(email: string, password: string): Promise<any> {
-    return this.fireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password)
+    return this.fireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password);
   }
 
   logout(): Promise<any> {

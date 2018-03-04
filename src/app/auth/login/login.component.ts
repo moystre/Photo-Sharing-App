@@ -9,12 +9,22 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LoginComponent implements OnInit {
 
-  //access point to AngularFireAuth
+  // access point to AngularFireAuth
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.login('rarara@dda.ds', '12xzczxcASD...3345655')
-    .then(user => console.log(user))
+    this.authService.login('userrrr@us.os', '1sa3345655')
+    .then(() => console.log('Logged In'))
     .catch(error => console.log(error));
+
+/* TODO
+    this.authService.logout()
+    .then(() => console.log('Logged Out'))
+    .catch(error => console.log(error));
+*/
+    this.authService.isAuthenticated()
+    .subscribe(authState => console.log(authState),
+      error2 => console.log(error2),
+      () => console.log('Complete'));
   }
 }

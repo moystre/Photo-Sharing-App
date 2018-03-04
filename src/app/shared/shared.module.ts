@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
@@ -8,7 +9,8 @@ import { MarginIconComponent } from './margin-icon/margin-icon.component';
     CommonModule,
     MatButtonModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    FlexLayoutModule
   ],
   declarations: [ ToolbarComponent, MarginIconComponent ],
   exports: [ ToolbarComponent, MarginIconComponent ]
