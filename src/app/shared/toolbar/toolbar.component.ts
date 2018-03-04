@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthService } from './../../auth/shared/auth.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {MatButtonModule, MatToolbarModule} from '@angular/material';
@@ -13,7 +14,8 @@ export class ToolbarComponent implements OnInit {
   @Output()
   navToggle = new EventEmitter();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.authService.isAuthenticated()
@@ -27,7 +29,11 @@ export class ToolbarComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout()
+    .then(() => {
+      this.router.navigateByUrl('login');
+      console.log('should be navigated to Login page');
+    });
   }
 
 }

@@ -1,3 +1,4 @@
+import { AuthGuard } from './shared/auth-guard.service';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -24,6 +25,6 @@ import {MatCardModule} from '@angular/material/card';
     MatSnackBarModule
   ],
   declarations: [LoginComponent],
-  providers: [AuthService]
+  providers: [AuthService, AuthGuard]
 })
 export class AuthModule { }
