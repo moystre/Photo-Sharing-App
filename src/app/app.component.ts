@@ -1,4 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { AuthService } from './auth/shared/auth.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 
@@ -7,7 +8,7 @@ import { ObservableMedia, MediaChange } from '@angular/flex-layout';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
   navBarOpen = true;
   mode = 'side';
@@ -17,11 +18,12 @@ export class AppComponent implements OnDestroy {
     {route: '/', title: 'Home', icon: 'home'},
     {route: '/albums', title: 'Albums', icon: 'folder'},
     {route: '/login', title: 'Login', icon: 'input'}
-  ]
+  ];
 
-  constructor(media: ObservableMedia){
+  constructor(media: ObservableMedia,
+              private authService: AuthService) {
     this.watcher = media.subscribe((change: MediaChange) => {
-      if(change.mqAlias === 'xs'){
+      if (change.mqAlias === 'xs') {
         this.loadMobileContent();
       } else {
           this.loadDashBoardContent();
@@ -29,24 +31,29 @@ export class AppComponent implements OnDestroy {
     });
   }
 
-  ngOnDestroy(){
+  ngOnInit() {
+   this.authService.isAuthenticated().subscribe(isLoggedIn => {
+   this.navBarOpen = isLoggedIn;
+   });
+  }
+
+  ngOnDestroy() {
     this.navBarOpen = !this.navBarOpen;
   }
 
-  toggleNav(){
+  toggleNav() {
     this.navBarOpen = !this.navBarOpen;
   }
 
-  loadMobileContent(){
+  loadMobileContent() {
     console.log('mobile view');
     this.navBarOpen = false;
     this.mode = 'over';
   }
 
-  loadDashBoardContent(){
+  loadDashBoardContent() {
     console.log('large view');
     this.navBarOpen = true;
     this.mode = 'side';
     }
-  
 }

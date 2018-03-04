@@ -2,15 +2,15 @@
   <mat-toolbar-row fxLayout="row">
     <button mat-mini-fab
          class="special"
-        (click)="toggleNav()">
+        (click)="toggleNav()"
+        *ngIf="isLoggedIn">
       <mat-icon>list</mat-icon>
     </button>
     <span fxFlex fxFlexOffset="10px">Photo-Share</span>
     <button mat-mini-fab
         class="special"
        (click)="logout()"
-       *ngIf="isLoggedIn"
-    >
+       *ngIf="isLoggedIn">
     <mat-icon>exit_to_app</mat-icon>
     </button>
   </mat-toolbar-row>
