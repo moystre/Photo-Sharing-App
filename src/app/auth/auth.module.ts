@@ -6,8 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './shared/auth.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatSnackBarModule
   ],
   declarations: [LoginComponent],
   providers: [AuthService]

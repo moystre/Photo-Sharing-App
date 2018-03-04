@@ -3,6 +3,7 @@ import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'psa-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   // access point to AngularFireAuth
   constructor(private authService: AuthService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private snackBar: MatSnackBar ) {
     this.loginForm = fb.group({
       email: '',
       password: ''
@@ -34,7 +36,11 @@ export class LoginComponent implements OnInit {
     const loginModel = this.loginForm.value;
     this.authService.login(loginModel.email, loginModel.password)
     .then(() => console.log('Logged In'))
-    .catch(error => console.log(error));
+    .catch(error => {
+    this.snackBar.open(error.message, '', {
+      duration: 4000
+    });
+    });
     console.log('LOGIN:   ' + loginModel.email + ' / ' + loginModel.password + '    ');
   }
 }
