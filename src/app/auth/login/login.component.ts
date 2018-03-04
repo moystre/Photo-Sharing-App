@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'psa-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   // access point to AngularFireAuth
   constructor(private authService: AuthService,
               private fb: FormBuilder,
-              private snackBar: MatSnackBar ) {
+              private snackBar: MatSnackBar,
+              private router: Router) {
     this.loginForm = fb.group({
       email: '',
       password: ''
@@ -35,7 +38,13 @@ export class LoginComponent implements OnInit {
   login() {
     const loginModel = this.loginForm.value;
     this.authService.login(loginModel.email, loginModel.password)
-    .then(() => console.log('Logged In'))
+    .then(() => {
+      console.log('Logged In');
+      this.router.navigateByUrl('albums')
+      .then(() => this.snackBar.open('You`re logged in', '', {
+        duration: 4000
+      }));
+    })
     .catch(error => {
     this.snackBar.open(error.message, '', {
       duration: 4000
