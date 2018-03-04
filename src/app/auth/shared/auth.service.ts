@@ -14,6 +14,7 @@ export class AuthService {
   }
 
   logout(): Promise<any> {
+    console.log('Logged Out');
     return this.fireAuth.auth.signOut();
   }
 

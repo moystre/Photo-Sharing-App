@@ -1,13 +1,13 @@
-<form [formGroup] = "loginForm" nocalidate>
+<form (ngSubmit)="login()" [formGroup] = "loginForm" nocalidate>
   <mat-form-field>
-    <input matInput placeholder="Email" formCOntrolName="email">
+    <input matInput placeholder="Email" formControlName="email">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Password" type="password" formControlName="password">
+    <input matInput placeholder="Password" type ="password" formControlName="password">
   </mat-form-field>
   <button mat-mini-fab
   class="special"
- (click)="login()">
+ type="submit">
 login
 </button>
 </form>

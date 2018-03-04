@@ -1,3 +1,4 @@
+import { element, by } from 'protractor';
 import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   // access point to AngularFireAuth
   constructor(private authService: AuthService,
-  private fb: FormBuilder) {
+              private fb: FormBuilder) {
     this.loginForm = fb.group({
       email: '',
       password: ''
@@ -22,20 +23,18 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.authService.login('userrrr@us.os', '1sa3345655')
-    .then(() => console.log('Logged In'))
-    .catch(error => console.log(error));
 
-/* TODO
-    this.authService.logout()
-    .then(() => console.log('Logged Out'))
-    .catch(error => console.log(error));
-*/
     this.authService.isAuthenticated()
     .subscribe(authState => console.log(authState),
       error2 => console.log(error2),
       () => console.log('Complete'));
   }
 
-  login() {}
+  login() {
+    const loginModel = this.loginForm.value;
+    this.authService.login(loginModel.email, loginModel.password)
+    .then(() => console.log('Logged In'))
+    .catch(error => console.log(error));
+    console.log('LOGIN:   ' + loginModel.email + ' / ' + loginModel.password + '    ');
+  }
 }
