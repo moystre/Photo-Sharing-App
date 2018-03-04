@@ -9,7 +9,7 @@
     <button mat-mini-fab
         class="special"
        (click)="logout()"
-    >
+        *ngIf="isLoggedIn">
     <mat-icon>exit_to_app</mat-icon>
     </button>
   </mat-toolbar-row>

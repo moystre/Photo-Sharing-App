@@ -1,3 +1,13 @@
-<p>
-  login works!
-</p>
+<form [formGroup] = "loginForm" nocalidate>
+  <mat-form-field>
+    <input matInput placeholder="Email" formCOntrolName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Password" type="password" formControlName="password">
+  </mat-form-field>
+  <button mat-mini-fab
+  class="special"
+ (click)="login()">
+login
+</button>
+</form>
