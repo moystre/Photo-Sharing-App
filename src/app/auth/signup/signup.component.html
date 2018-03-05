@@ -27,9 +27,12 @@
             <input matInput
                    placeholder="Repeat Password"
                    type="password"
-                   formControlName="repeatPassword">
-                   <mat-error *ngIf="formControllError('repeatPassword', 'required')">
+                   formControlName="repeatedPass">
+                   <mat-error *ngIf="formControllError('repeatedPass', 'required')">
                     Rrepeated password is required
+                  </mat-error>
+                  <mat-error *ngIf="formControllError('repeatedPass', 'not-matching-pass', ['required'])">
+                    Rrepeated password does not match
                   </mat-error>
           </mat-form-field>
           <button mat-button

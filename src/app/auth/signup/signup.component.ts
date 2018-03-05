@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-// import { User } from '../shared/user';
+import { matchPassword } from '../shared/password.validator';
 
 @Component({
   selector: 'psa-signup',
@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
     this.signupForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      repeatPassword: ['', [Validators.required]]
+      repeatedPass: ['', [Validators.required, matchPassword()]]
     });
   }
 
@@ -48,16 +48,15 @@ export class SignupComponent implements OnInit {
   }
 
   formControllError(formControl: string,
-                    errorCode: string,
-                    preRequired: string[]): boolean {
-                      if (preRequired && preRequired.length > 0) {
-                        for (let i = 0; i < preRequired.length; i++) {
-                          if (this.signupForm.get(formControl).hasError(preRequired[i])) {
-                            return false;
-                        }
-                      }
-                    }
-                    return this.signupForm.get(formControl).hasError(errorCode);
+    errorCode: string,
+    preRequired?: string[]): boolean {
+    if (preRequired && preRequired.length > 0) {
+      for (let i = 0; i < preRequired.length; i++) {
+        if (this.signupForm.get(formControl).hasError(preRequired[i])) {
+          return false;
+        }
+      }
+    }
+    return this.signupForm.get(formControl).hasError(errorCode);
   }
-
 }
