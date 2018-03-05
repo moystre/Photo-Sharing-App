@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
@@ -15,14 +15,14 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private snack: MatSnackBar,
+              private snackBar: MatSnackBar,
               private router: Router) { }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
-      email: '',
-      password: '',
-      repeatPassword: ''
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      repeatPassword: ['', [Validators.required]]
     });
   }
 
@@ -32,19 +32,23 @@ export class SignupComponent implements OnInit {
       .then(user => {
         this.router.navigateByUrl('albums')
           .then(() => {
-            this.snack.open('You are signed up!',
+            this.snackBar.open('You are signed up!',
               '',
               {
-                duration: 2000
+                duration: 3000
               });
           });
       })
       .catch(error => {
-        this.snack.open(error.message, '',
+        this.snackBar.open(error.message, '',
           {
-            duration: 5000
+            duration: 4000
           });
       });
+  }
+
+  formControllError(formControl: string, errorCode: string): boolean {
+    return this.signupForm.get(formControl).hasError(errorCode);
   }
 
 }
