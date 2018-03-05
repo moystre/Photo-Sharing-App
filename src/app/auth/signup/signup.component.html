@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="center">
+        <form (ngSubmit)="signup()"
+              [formGroup]="signupForm"
+              novalidate
+              fxLayout="column">
+          <mat-form-field fxFlex>
+            <input matInput
+                   placeholder="Email"
+                   formControlName="email">
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput
+                   placeholder="Password"
+                   type="password"
+                   formControlName="password">
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput
+                   placeholder="Repeat Password"
+                   type="password"
+                   formControlName="repeatPassword">
+          </mat-form-field>
+          <button mat-button
+                  color="primary"
+                  type="submit">
+            Signup
+          </button>
+        </form>
+  </div>

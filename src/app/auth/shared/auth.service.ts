@@ -18,6 +18,13 @@ export class AuthService {
     return this.fireAuth.auth.signOut();
   }
 
+  signup(email: string, password: string): Promise<any> {
+    return this.fireAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(
+      email,
+      password
+    );
+  }
+
   isAuthenticated(): Observable<boolean> {
     return this.fireAuth.authState
     .map(authState => {
