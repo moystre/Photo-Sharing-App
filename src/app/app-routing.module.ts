@@ -11,6 +11,11 @@ import { LoggedInGuard } from './auth/shared/logged-in.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/albums',
+    pathMatch: 'full'
+  },
+  {
     path: 'albums',
     component: AlbumsListComponent,
     canActivate: [AuthGuard]
