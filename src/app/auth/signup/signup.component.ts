@@ -47,8 +47,17 @@ export class SignupComponent implements OnInit {
       });
   }
 
-  formControllError(formControl: string, errorCode: string): boolean {
-    return this.signupForm.get(formControl).hasError(errorCode);
+  formControllError(formControl: string,
+                    errorCode: string,
+                    preRequired: string[]): boolean {
+                      if (preRequired && preRequired.length > 0) {
+                        for (let i = 0; i < preRequired.length; i++) {
+                          if (this.signupForm.get(formControl).hasError(preRequired[i])) {
+                            return false;
+                        }
+                      }
+                    }
+                    return this.signupForm.get(formControl).hasError(errorCode);
   }
 
 }

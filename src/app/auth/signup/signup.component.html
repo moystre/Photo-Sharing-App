@@ -8,11 +8,10 @@
                    placeholder="Email"
                    formControlName="email">
                    <mat-error *ngIf="formControllError('email', 'required')">
-                      email required
+                      Email is required
                     </mat-error>
-                    <mat-error *ngIf="formControllError('email', 'email') &&
-                                      !formControllError('email', 'required')">
-                      email is invalid
+                    <mat-error *ngIf="formControllError('email', 'email', ['required'])">
+                      Email is invalid
                     </mat-error>
           </mat-form-field>
           <mat-form-field fxFlex>
@@ -20,12 +19,18 @@
                    placeholder="Password"
                    type="password"
                    formControlName="password">
+                   <mat-error *ngIf="formControllError('password', 'required')">
+                    Password is required
+                  </mat-error>
           </mat-form-field>
           <mat-form-field fxFlex>
             <input matInput
                    placeholder="Repeat Password"
                    type="password"
                    formControlName="repeatPassword">
+                   <mat-error *ngIf="formControllError('repeatPassword', 'required')">
+                    Rrepeated password is required
+                  </mat-error>
           </mat-form-field>
           <button mat-button
                   color="primary"
