@@ -4,6 +4,7 @@ import { AuthService } from '../shared/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { matchPassword } from '../shared/password.validator';
+import { User } from '../shared/user';
 
 @Component({
   selector: 'psa-signup',
@@ -27,8 +28,8 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    const model = this.signupForm.value;
-    this.authService.signup(model.email, model.password)
+    const model = this.signupForm.value as User;
+    this.authService.signup(model)
       .then(user => {
         this.router.navigateByUrl('albums')
           .then(() => {
