@@ -5,7 +5,7 @@ export function matchPassword(): ValidatorFn {
     const formGroup = repeatedPass.parent;
     if (formGroup) {
       const pass = formGroup.get('password');
-      return pass.value !== repeatedPass.value ? {'notmatchingpass': {value: repeatedPass.value}} : null;
+      return pass.value !== repeatedPass.value ? {'not-matching-pass': {value: repeatedPass.value}} : null;
     }
     return null;
   };
