@@ -1,3 +1,4 @@
+import { ProfileComponent } from './auth/profile/profile.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
     component: AlbumsListComponent,
     canActivate: [AuthGuard]
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard]},
   {
     path: 'login',
     component: LoginComponent,

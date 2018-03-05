@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   routes = [
     {route: '/', title: 'Home', icon: 'home'},
     {route: '/albums', title: 'Albums', icon: 'folder'},
+    {route: '/profile', title: 'Profile', icon: 'face'}
   ];
 
   constructor(media: ObservableMedia,
