@@ -1,5 +1,4 @@
 import { AuthGuard } from './shared/auth-guard.service';
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -9,9 +8,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { SignupComponent } from './signup/signup.component';
-
+import { LoggedInGuard } from './shared/logged-in.guard';
 
 @NgModule({
   imports: [
@@ -26,6 +25,6 @@ import { SignupComponent } from './signup/signup.component';
     MatSnackBarModule
   ],
   declarations: [LoginComponent, SignupComponent],
-  providers: [AuthService, AuthGuard]
+  providers: [AuthService, AuthGuard, LoggedInGuard]
 })
 export class AuthModule { }

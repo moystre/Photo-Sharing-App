@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { AlbumsListComponent } from './albums/albums-list/albums-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/shared/auth-guard.service';
+import { LoggedInGuard } from './auth/shared/logged-in.guard';
 
 const routes: Routes = [
   {
@@ -16,11 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: SignupComponent,
+    canActivate: [LoggedInGuard]
   }
 ];
 
