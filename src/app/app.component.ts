@@ -10,15 +10,13 @@ import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
-  navBarOpen = true;
+  navBarOpen = false;
   mode = 'side';
   watcher: Subscription;
 
   routes = [
     {route: '/', title: 'Home', icon: 'home'},
     {route: '/albums', title: 'Albums', icon: 'folder'},
-    {route: '/login', title: 'Login', icon: 'input'},
-    {route: '/signup', title: 'Signup', icon: 'input'}
   ];
 
   constructor(media: ObservableMedia,

@@ -1,23 +1,29 @@
 <br>
 <div fxLayout="row" fxLayoutAlign="center">
-    <mat-card fxFlex="50">
-      <mat-card-header>
-        <mat-card-title><h2><b>Login</b></h2></mat-card-title>
-     </mat-card-header>
-      <mat-card-content>
-        <form (ngSubmit)="login()" [formGroup] = "loginForm" fxLayout="column" novalidate>
-  <mat-form-field fxFlex style="transform: perspective(1px)">
-    <input matInput placeholder="Email" formControlName="email">
-  </mat-form-field>
-  <mat-form-field fxFlex style="transform: perspective(1px)">
-    <input matInput placeholder="Password" type ="password" formControlName="password">
-  </mat-form-field>
-  <button mat-button
-  class="special"
- type="submit">
-login
-</button>
-</form>
-</mat-card-content>
-</mat-card>
+  <mat-card fxFlex="50">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>
+          <b>Login</b>
+        </h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="login()" [formGroup]="loginForm" fxLayout="column" novalidate>
+        <mat-form-field fxFlex style="transform: perspective(1px)">
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field fxFlex style="transform: perspective(1px)">
+          <input matInput placeholder="Password" type="password" formControlName="password">
+        </mat-form-field>
+        <button mat-button class="special" type="submit">
+          Login
+        </button>
+        <br>
+        <button mat-button class="special" type="button" routerLink="/signup">
+          Sign up
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

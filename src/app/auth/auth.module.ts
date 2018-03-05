@@ -22,7 +22,8 @@ import { LoggedInGuard } from './shared/logged-in.guard';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterModule
   ],
   declarations: [LoginComponent, SignupComponent],
   providers: [AuthService, AuthGuard, LoggedInGuard]
