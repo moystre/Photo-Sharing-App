@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { SignupComponent } from './signup/signup.component';
 import { LoggedInGuard } from './shared/logged-in.guard';
-import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -27,7 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     RouterModule,
     MatIconModule
   ],
-  declarations: [LoginComponent, SignupComponent, ProfileComponent],
+  declarations: [LoginComponent, SignupComponent],
   providers: [AuthService, AuthGuard, LoggedInGuard]
 })
 export class AuthModule { }

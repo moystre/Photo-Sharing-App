@@ -1,4 +1,4 @@
-import { ProfileComponent } from './auth/profile/profile.component';
+import { ProfileComponent } from './user/profile/profile.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -9,6 +9,7 @@ import { AlbumsListComponent } from './albums/albums-list/albums-list.component'
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/shared/auth-guard.service';
 import { LoggedInGuard } from './auth/shared/logged-in.guard';
+import { UserModule } from './user/user.module';
 
 const routes: Routes = [
   {
@@ -41,7 +42,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
-    AuthModule
+    AuthModule,
+    UserModule
   ],
   declarations: [],
   exports: [ RouterModule ]
