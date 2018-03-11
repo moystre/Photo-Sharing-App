@@ -9,10 +9,11 @@ import { User } from '../../user/shared/user';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   profileForm: FormGroup;
   user: User;
+  userSubscription: Subscription;
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder) {
@@ -25,19 +26,27 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*
+    this.userSubscription = this.userService.getUser()
+    .subscribe(user => {
+      this.user = user;
+      this.profileForm.patchValue(user);
+    });
+
+
     this.user = {
-      userName: 'John',
+      userName: 'userJohn123',
       email: 'john222@m2.dk',
       uid: '332',
-      firstName: 'Vistor',
+      firstName: 'John',
       middleName: 'De',
-      lastName: 'Lalalal'
+      lastName: 'Rotflflfl'
     };
-    */
 
-     this.userService.getUser()
-     .subscribe( user => this.user);
+    }
+
+    ngOnDestroy() {
+      this.userSubscription.unsubscribe();
+
     }
 
   save() {
@@ -50,7 +59,7 @@ export class ProfileComponent implements OnInit {
 
   formControlError(formControl: string, errorCode: string, prerequired?: string[]): boolean {
 
-    console.log( this.user);
+   // console.log( this.user);
 
     if (prerequired && prerequired.length > 0) {
       for (let i = 0; i < prerequired.length; i++) {
