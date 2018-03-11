@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule, MatIconModule } from '@angular/material';
@@ -7,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from './shared/user.service';
 import { ProfileComponent } from './profile/profile.component';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { ProfileComponent } from './profile/profile.component';
     MatCardModule,
     MatSnackBarModule,
     RouterModule,
-    MatIconModule
+    MatIconModule,
+    AngularFirestoreModule,
+    SharedModule,
   ],
   declarations: [ProfileComponent],
   providers: [UserService]

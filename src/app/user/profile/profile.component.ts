@@ -1,6 +1,7 @@
 import { UserService } from './../../user/shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../user/shared/user';
 
 @Component({
@@ -39,7 +40,13 @@ export class ProfileComponent implements OnInit {
      .subscribe( user => this.user);
     }
 
-  save() {}
+  save() {
+    const model = this.profileForm.value as User;
+    model.uid = this.user.uid;
+    this.userService.update(model)
+      .then(() => console.log('saved'))
+      .catch(error => console.log('error', error));
+  }
 
   formControlError(formControl: string, errorCode: string, prerequired?: string[]): boolean {
 
