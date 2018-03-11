@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
       middleName: 'De',
       lastName: 'Lalalal'
     };
-     */
+    */
 
      this.userService.getUser()
      .subscribe( user => this.user);
@@ -42,6 +42,9 @@ export class ProfileComponent implements OnInit {
   save() {}
 
   formControlError(formControl: string, errorCode: string, prerequired?: string[]): boolean {
+
+    console.log( this.user);
+
     if (prerequired && prerequired.length > 0) {
       for (let i = 0; i < prerequired.length; i++) {
         if (this.profileForm.get(formControl).hasError(prerequired[i])) {

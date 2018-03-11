@@ -3,14 +3,14 @@
     <mat-card  fxFlex="80">
       <mat-card-header>
         <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/photo-sharing-app-b1663.appspot.com/o/aza04Wm1_700w_0.jpg?alt=media&token=14039b08-86dd-4013-a812-8821bc281943" alt="Photo of a Shiba Inu">
-        <mat-card-title>{{user.userName}}</mat-card-title>
+        <mat-card-title>{{user.firstName}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <form (ngSubmit)="save()" [formGroup]="profileForm" novalidate fxLayout="column">
           <mat-form-field fxFlex>
             <input matInput placeholder="User Name" formControlName="userName">
-            <mat-error *ngIf="formControlError('useNname', 'required')">
+            <mat-error *ngIf="formControlError('userNname', 'required')">
               Username is required
             </mat-error>
             <mat-error *ngIf="formControlError('userName', 'minlength', ['required'])">
