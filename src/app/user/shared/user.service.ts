@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../auth/shared/auth.service';
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import 'rxjs/add/operator/first';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 
@@ -12,6 +12,8 @@ export class UserService {
 
   constructor(private authService: AuthService,
               private angularFireStore: AngularFirestore) { }
+
+  documentRef: AngularFirestoreDocument<User>;
 
   getUser(): Observable<User> {
     // 1. Get the AuthUser
@@ -22,6 +24,8 @@ export class UserService {
         if (!authUser) {
           return new EmptyObservable();
         }
+        this.documentRef = this.angularFireStore.doc<User>('users/' + authUser.uid);
+        console.log(this.documentRef);
         return this.angularFireStore.doc<User>('users/' + authUser.uid).valueChanges().first()
         .map(dbUser => {
           if (dbUser) {
