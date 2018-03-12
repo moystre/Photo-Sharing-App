@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { User } from './user';
 import { AngularFirestore } from 'angularfire2/firestore';
 import 'rxjs/add/operator/first';
+import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 
 @Injectable()
 export class UserService {
@@ -18,11 +19,18 @@ export class UserService {
     // 3. Merge AuthUser & DBUser - using Map to map to convert result of merging nad returning an Obs
     return this.authService.getAuthUser().first()
       .switchMap(authUser => {
+        if (!authUser) {
+          return new EmptyObservable();
+        }
         return this.angularFireStore.doc<User>('users/' + authUser.uid).valueChanges().first()
         .map(dbUser => {
-          dbUser.uid = authUser.uid;
-          dbUser.email = authUser.email;
-          return dbUser;
+          if (dbUser) {
+            authUser.userName = dbUser.userName;
+            authUser.firstName = dbUser.firstName;
+            authUser.middleName = dbUser.middleName;
+            authUser.lastName = dbUser.lastName;
+          }
+          return authUser;
         });
       });
   }

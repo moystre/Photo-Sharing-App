@@ -36,6 +36,10 @@ export class AuthService {
   getAuthUser(): Observable<User> {
     return this.fireAuth.authState
     .map(authState => {
+      if (!authState) {
+        console.log('AuthState ERROR in getAuthUser()');
+        return null;
+      }
         return {email: authState.email, uid: authState.uid};
     });
   }
