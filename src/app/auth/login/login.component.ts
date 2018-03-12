@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.isAuthenticated()
     .subscribe(authState => console.log(authState),
-      error2 => console.log(error2),
+      error2 => console.log('ERRORLOGIN' + error2),
       () => console.log('Complete'));
   }
 
