@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.profileForm.patchValue(user);
     });
 
-
+/*
     this.user = {
       userName: 'userJohn123',
       email: 'john222@m2.dk',
@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       middleName: 'De',
       lastName: 'Rotflflfl'
     };
-
+*/
     }
 
     ngOnDestroy() {
@@ -55,6 +55,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userService.update(model)
       .then(() => console.log('saved'))
       .catch(error => console.log('error', error));
+  }
+
+  unsaved(): boolean {
+    const model = this.profileForm.value as User;
+    return model.userName === this.user.userName &&
+           model.firstName === this.user.firstName &&
+           model.middleName === this.user.middleName &&
+           model.lastName === this.user.lastName;
   }
 
   formControlError(formControl: string, errorCode: string, prerequired?: string[]): boolean {
