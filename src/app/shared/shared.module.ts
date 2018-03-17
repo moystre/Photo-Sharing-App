@@ -14,6 +14,6 @@ import { UploadDirective } from './directives/upload.directive';
     FlexLayoutModule
   ],
   declarations: [ ToolbarComponent, MarginIconComponent, UploadDirective ],
-  exports: [ ToolbarComponent, MarginIconComponent ]
+  exports: [ ToolbarComponent, MarginIconComponent, UploadDirective ]
 })
 export class SharedModule { }

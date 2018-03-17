@@ -2,7 +2,12 @@
 <div fxLayout="row" fxLayoutAlign="center">
     <mat-card  fxFlex="80" *ngIf="user">
       <mat-card-header>
-        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/photo-sharing-app-b1663.appspot.com/o/aza04Wm1_700w_0.jpg?alt=media&token=14039b08-86dd-4013-a812-8821bc281943" alt="Photo of a Shiba Inu">
+        <img
+        psaUpload
+        (hovering)="hovering($event)"
+        mat-card-avatar
+        src="https://firebasestorage.googleapis.com/v0/b/photo-sharing-app-b1663.appspot.com/o/aza04Wm1_700w_0.jpg?alt=media&token=14039b08-86dd-4013-a812-8821bc281943"
+        alt="Photo of a Shiba Inu">
         <mat-card-title>{{user.userName}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>

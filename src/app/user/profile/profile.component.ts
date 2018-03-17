@@ -49,6 +49,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
 
+    hovering(event) {
+      console.log('PROFILE COMPONENT:   ', event);
+    }
+
   save() {
     const model = this.profileForm.value as User;
     model.uid = this.user.uid;
