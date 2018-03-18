@@ -1,19 +1,31 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './../../user/shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { User } from '../../user/shared/user';
+import { transition, animate, trigger, state, style } from '@angular/animations';
 
 @Component({
   selector: 'psa-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  animations: [trigger('imageHovered', [
+    state('hoveringImage', style({
+      opacity: 0.3
+    })),
+    state('notHoveringImage', style({
+      opacity: 1
+    })),
+    transition('hoveringImage <=> notHoveringImage', animate('300ms ease-in'))
+  ])]
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
   profileForm: FormGroup;
   user: User;
   userSubscription: Subscription;
+  isHovering: boolean;
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder) {
@@ -49,8 +61,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
 
-    hovering(event) {
-      console.log('PROFILE COMPONENT:   ', event);
+    hovering(isHovering: boolean) {
+      this.isHovering = isHovering;
     }
 
   save() {

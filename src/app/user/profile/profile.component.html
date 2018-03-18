@@ -3,6 +3,7 @@
     <mat-card  fxFlex="80" *ngIf="user">
       <mat-card-header>
         <img
+        [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
         psaUpload
         (hovering)="hovering($event)"
         mat-card-avatar
