@@ -10,26 +10,26 @@ export class UploadDirective {
 
   constructor() { }
   @HostListener('dragenter', ['$event'])
-  onEnter($event) {
+  onEnter(event) {
     event.preventDefault();
     this.hovering.emit(true);
   }
 
   @HostListener('dragleave', ['$event'])
-  onDragLeave($event) {
+  onDragLeave(event) {
     event.preventDefault();
     this.hovering.emit(false);
   }
 
   @HostListener('dragover', ['$event'])
-  onDragOver($event) {
+  onDragOver(event) {
     event.preventDefault();
   }
 
   @HostListener('drop', ['$event'])
-  onDrop($event) {
+  onDrop(event) {
     event.preventDefault();
-    console.log('Drop event;   ', $event);
+    console.log('Drop event;   ', event);
   }
 
 }
