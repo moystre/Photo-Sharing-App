@@ -1,3 +1,4 @@
+import { FileService } from './../../file-system/file.service';
 import { MatSnackBar } from '@angular/material';
 import { UserService } from './../../user/shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   img: String;
 
   constructor(private userService: UserService,
+              private fileService: FileService,
               private formBuilder: FormBuilder,
               private snack: MatSnackBar) {
     this.profileForm = formBuilder.group({
@@ -70,6 +72,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
           fileList.length === 1 &&
           ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
             console.log(fileList.item(0));
+            const file = fileList.item(0);
+            const path = 'profile-img/' + file.name;
+            this.fileService.upload(path, file).downloadUrl
+            .subscribe(
+              url => {
+                console.log('url', url);
+                this.img = url;
+              }
+            );
           } else {
             this.snack.open('File has to be a single png or jpeg image', null, { duration: 4000 });
           }

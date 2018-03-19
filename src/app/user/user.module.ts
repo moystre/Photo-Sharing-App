@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { UserService } from './shared/user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { FileSystemModule } from '../file-system/file-system.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     AngularFirestoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FileSystemModule
   ],
   declarations: [ProfileComponent],
   providers: [UserService]
