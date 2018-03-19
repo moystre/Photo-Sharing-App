@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { UserService } from './../../user/shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnDestroy, OnInit} from '@angular/core';
@@ -28,7 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   img: String;
 
   constructor(private userService: UserService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private snack: MatSnackBar) {
     this.profileForm = formBuilder.group({
       userName: ['', [Validators.required, Validators.minLength(4)]],
       firstName: '',
@@ -64,7 +66,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     uploadNewImg(fileList) {
-      console.log('FILE_LIST:    ', fileList);
+      if (fileList &&
+          fileList.length === 1 &&
+          ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
+            console.log(fileList.item(0));
+          } else {
+            this.snack.open('File has to be a single png or jpeg image', null, { duration: 4000 });
+          }
     }
 
     save() {
