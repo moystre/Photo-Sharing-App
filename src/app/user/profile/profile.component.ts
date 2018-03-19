@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './../../user/shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnDestroy, OnInit} from '@angular/core';
@@ -10,7 +9,7 @@ import { transition, animate, trigger, state, style } from '@angular/animations'
   selector: 'psa-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  animations: [trigger('imageHovered', [
+  animations: [trigger('imageHover', [
     state('hoveringImage', style({
       opacity: 0.3
     })),
@@ -26,6 +25,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user: User;
   userSubscription: Subscription;
   isHovering: boolean;
+  img: String;
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder) {
@@ -43,17 +43,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.user = user;
       this.profileForm.patchValue(user);
     });
-
-/*
-    this.user = {
-      userName: 'userJohn123',
-      email: 'john222@m2.dk',
-      uid: '332',
-      firstName: 'John',
-      middleName: 'De',
-      lastName: 'Rotflflfl'
-    };
-*/
     }
 
     ngOnDestroy() {
@@ -65,7 +54,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.isHovering = isHovering;
     }
 
-  save() {
+    changePicture(event) {
+      if (event.toState === 'hoveringImage') {
+        this.img = '../../../../assets/ic_cloud_upload_black_48px.svg';
+      } else {
+        this.img = 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-app-b1663.appspot.com/o/aza04Wm1_700w_0.jpg?alt=media&token=14039b08-86dd-4013-a812-8821bc281943';
+      }
+      console.log('animation done', event);
+    }
+
+    save() {
     const model = this.profileForm.value as User;
     model.uid = this.user.uid;
     this.userService.update(model)
