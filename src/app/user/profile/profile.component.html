@@ -9,6 +9,7 @@
         (@imageHover.done)="changePicture($event)"
         psaUpload
         (hovering)="hovering($event)"
+        (dropped)="uploadNewImg($event)"
         mat-card-avatar
         [src]="img"
         alt="Photo of a Shiba Inu">
