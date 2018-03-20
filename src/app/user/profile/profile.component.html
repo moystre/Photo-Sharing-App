@@ -3,16 +3,21 @@
     <mat-card  fxFlex="80" *ngIf="user">
       <mat-card-header>
         <img
+        [hidden]="!srcLoaded"
         matTooltipPosition = "before"
         matTooltip="Drop new image here"
         [@imageHover]="isHovering ? 'hoveringImage' : 'notHoveringImage'"
-        (@imageHover.done)="changePicture($event)"
         psaUpload
         (hovering)="hovering($event)"
         (dropped)="uploadNewImg($event)"
         mat-card-avatar
-        [src]="img"
-        alt="Photo of a Shiba Inu">
+        [src]="isHovering? 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-app-b1663.appspot.com/o/aza04Wm1_700w_0.jpg?alt=media&token=14039b08-86dd-4013-a812-8821bc281943' : img"
+        alt="photo"
+        (load)="srcLoaded = true">
+          <mat-spinner
+          mat-card-avatar
+          diameter="40"
+          *ngIf="!srcLoaded"></mat-spinner>
         <mat-card-title>{{user.userName}}</mat-card-title>
         <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
       </mat-card-header>

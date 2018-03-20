@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userSubscription: Subscription;
   isHovering: boolean;
   img: String;
+  srcLoaded: boolean;
 
   constructor(private userService: UserService,
               private fileService: FileService,
@@ -42,13 +43,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userSubscription = this.userService.getUser()
+    this.userSubscription = this.userService.getUserWithProfileUrl()
     .subscribe(user => {
       this.user = user;
-      this.fileService.downloadUrlProfile(user.uid).subscribe(url => {
-        console.log('url', url);
-        this.img = url;
-      });
+      this.img = this.user.profileImgUrl;
       this.profileForm.patchValue(user);
     });
     }
@@ -62,19 +60,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.isHovering = isHovering;
     }
 
-    changePicture(event) {
-      if (event.toState === 'hoveringImage') {
-        this.img = '../../../../assets/ic_cloud_upload_black_48px.svg';
-      } else {
-        this.img = 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-app-b1663.appspot.com/o/aza04Wm1_700w_0.jpg?alt=media&token=14039b08-86dd-4013-a812-8821bc281943';
-      }
-      console.log('animation done', event);
-    }
-
     uploadNewImg(fileList) {
       if (fileList &&
           fileList.length === 1 &&
           ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1) {
+            this.srcLoaded = false;
             console.log(fileList.item(0));
             const file = fileList.item(0);
             const path = 'profile-imgs/' + this.user.uid;
@@ -83,10 +73,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
               url => {
                 console.log('url', url);
                 this.img = url;
+                this.hovering(false);
               }
             );
           } else {
-            this.snack.open('File has to be a single png or jpeg image', null, { duration: 4000 });
+            this.snack.open('File has to be a single png or jpeg image', null, { duration: 4000 }
+            );
+            this.hovering(false);
           }
     }
 
