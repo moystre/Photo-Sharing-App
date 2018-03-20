@@ -1,3 +1,4 @@
+import { FileService } from './../../file-system/file.service';
 import { element } from 'protractor';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../auth/shared/auth.service';
@@ -11,7 +12,8 @@ import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 export class UserService {
 
   constructor(private authService: AuthService,
-              private angularFireStore: AngularFirestore) { }
+              private angularFireStore: AngularFirestore,
+              private fileService: FileService) { }
 
   documentRef: AngularFirestoreDocument<User>;
 
@@ -37,6 +39,18 @@ export class UserService {
           return authUser;
         });
       });
+  }
+
+  getUserWithProfileUrl(): Observable<User> {
+    return this.getUser()
+    .switchMap(user => {
+      return this.fileService.downloadUrlProfile(user.uid)
+      .map(url => {
+        user.profileImgUrl = url;
+        console.log(user);
+        return user;
+      });
+    });
   }
 
   update(user: User): Promise<any> {
