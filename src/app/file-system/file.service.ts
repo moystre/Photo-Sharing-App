@@ -5,8 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class FileService {
-
-  constructor(private fireStorage: AngularFireStorage) { }
+  constructor(private fireStorage: AngularFireStorage) {}
 
   upload(path: string, file: File): UploadTask {
     const task = this.fireStorage.upload(path, file);
@@ -15,7 +14,7 @@ export class FileService {
     };
   }
 
-  downloadUrlProfile (uid: string): Observable<any> {
+  downloadUrlProfile(uid: string): Observable<any> {
     return this.fireStorage.ref('profile-imgs/' + uid).getDownloadURL();
-    }
+  }
 }

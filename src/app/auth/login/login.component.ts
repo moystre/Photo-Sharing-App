@@ -11,43 +11,50 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
 
   // access point to AngularFireAuth
-  constructor(private authService: AuthService,
-              private fb: FormBuilder,
-              private snackBar: MatSnackBar,
-              private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {
     this.loginForm = fb.group({
       email: '',
       password: ''
     });
-   }
+  }
 
   ngOnInit() {
-
-    this.authService.isAuthenticated()
-    .subscribe(authState => console.log(authState),
-      error2 => console.log('ERRORLOGIN' + error2),
-      () => console.log('Complete'));
+    this.authService
+      .isAuthenticated()
+      .subscribe(
+        authState => console.log(authState),
+        error2 => console.log('ERRORLOGIN' + error2),
+        () => console.log('Complete')
+      );
   }
 
   login() {
     const loginModel = this.loginForm.value;
-    this.authService.login(loginModel.email, loginModel.password)
-    .then(() => {
-      console.log('Logged In');
-      this.router.navigateByUrl('albums')
-      .then(() => this.snackBar.open('You`re logged in', '', {
-        duration: 4000
-      }));
-    })
-    .catch(error => {
-    this.snackBar.open(error.message, '', {
-      duration: 4000
-    });
-    });
-    console.log('LOGIN:   ' + loginModel.email + ' / ' + loginModel.password + '    ');
+    this.authService
+      .login(loginModel.email, loginModel.password)
+      .then(() => {
+        console.log('Logged In');
+        this.router.navigateByUrl('albums').then(() =>
+          this.snackBar.open('You`re logged in', '', {
+            duration: 4000
+          })
+        );
+      })
+      .catch(error => {
+        this.snackBar.open(error.message, '', {
+          duration: 4000
+        });
+      });
+    console.log(
+      'LOGIN:   ' + loginModel.email + ' / ' + loginModel.password + '    '
+    );
   }
 }

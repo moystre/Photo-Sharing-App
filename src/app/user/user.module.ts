@@ -2,8 +2,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatSnackBarModule,
-  MatIconModule, MatTooltipModule, MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule,
+  MatSnackBarModule,
+  MatIconModule,
+  MatTooltipModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
@@ -35,4 +42,4 @@ import { FileSystemModule } from '../file-system/file-system.module';
   declarations: [ProfileComponent],
   providers: [UserService]
 })
-export class UserModule { }
+export class UserModule {}

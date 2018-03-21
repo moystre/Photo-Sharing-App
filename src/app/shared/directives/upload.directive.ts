@@ -4,14 +4,11 @@ import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
   selector: '[psaUpload]'
 })
 export class UploadDirective {
+  @Output() hovering = new EventEmitter<boolean>();
 
-  @Output()
-  hovering = new EventEmitter<boolean>();
+  @Output() dropped = new EventEmitter<FileList>();
 
-  @Output()
-  dropped = new EventEmitter<FileList>();
-
-  constructor() { }
+  constructor() {}
   @HostListener('dragenter', ['$event'])
   onEnter(event) {
     event.preventDefault();
@@ -34,5 +31,4 @@ export class UploadDirective {
     event.preventDefault();
     this.dropped.emit(event.dataTransfer.files);
   }
-
 }

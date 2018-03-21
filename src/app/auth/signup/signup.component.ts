@@ -6,19 +6,19 @@ import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { matchPassword } from '../shared/password.validator';
 
-
 @Component({
   selector: 'psa-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
   signupForm: FormGroup;
-  constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private snackBar: MatSnackBar,
-              private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -30,28 +30,27 @@ export class SignupComponent implements OnInit {
 
   signup() {
     const model = this.signupForm.value as User;
-    this.authService.signup(model)
+    this.authService
+      .signup(model)
       .then(user => {
-        this.router.navigateByUrl('albums')
-          .then(() => {
-            this.snackBar.open('You are signed up!',
-              '',
-              {
-                duration: 3000
-              });
+        this.router.navigateByUrl('albums').then(() => {
+          this.snackBar.open('You are signed up!', '', {
+            duration: 3000
           });
+        });
       })
       .catch(error => {
-        this.snackBar.open(error.message, '',
-          {
-            duration: 4000
-          });
+        this.snackBar.open(error.message, '', {
+          duration: 4000
+        });
       });
   }
 
-  formControllError(formControl: string,
+  formControllError(
+    formControl: string,
     errorCode: string,
-    preRequired?: string[]): boolean {
+    preRequired?: string[]
+  ): boolean {
     if (preRequired && preRequired.length > 0) {
       for (let i = 0; i < preRequired.length; i++) {
         if (this.signupForm.get(formControl).hasError(preRequired[i])) {

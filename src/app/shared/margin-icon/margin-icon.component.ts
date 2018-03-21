@@ -6,13 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./margin-icon.component.css']
 })
 export class MarginIconComponent implements OnInit {
+  @Input() iconName: String;
 
-  @Input()
-  iconName: String;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

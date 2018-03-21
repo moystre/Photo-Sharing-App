@@ -25,7 +25,8 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard]},
+    canActivate: [AuthGuard]
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -39,13 +40,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes),
-    AuthModule,
-    UserModule
-  ],
+  imports: [CommonModule, RouterModule.forRoot(routes), AuthModule, UserModule],
   declarations: [],
-  exports: [ RouterModule ]
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

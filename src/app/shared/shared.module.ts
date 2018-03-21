@@ -2,7 +2,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { MatButtonModule, MatToolbarModule, MatIconModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatToolbarModule,
+  MatIconModule
+} from '@angular/material';
 import { MarginIconComponent } from './margin-icon/margin-icon.component';
 import { UploadDirective } from './directives/upload.directive';
 @NgModule({
@@ -13,7 +17,7 @@ import { UploadDirective } from './directives/upload.directive';
     MatIconModule,
     FlexLayoutModule
   ],
-  declarations: [ ToolbarComponent, MarginIconComponent, UploadDirective ],
-  exports: [ ToolbarComponent, MarginIconComponent, UploadDirective ]
+  declarations: [ToolbarComponent, MarginIconComponent, UploadDirective],
+  exports: [ToolbarComponent, MarginIconComponent, UploadDirective]
 })
-export class SharedModule { }
+export class SharedModule {}

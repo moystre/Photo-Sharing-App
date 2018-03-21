@@ -4,10 +4,7 @@ import { AlbumsListComponent } from './albums-list/albums-list.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule
-  ],
+  imports: [CommonModule, SharedModule],
   declarations: [AlbumsListComponent]
 })
-export class AlbumsModule { }
+export class AlbumsModule {}
