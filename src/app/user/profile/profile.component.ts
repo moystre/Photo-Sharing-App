@@ -65,9 +65,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (this.user.img) {
           this.img = user.profileImgUrl;
         } else {
-          this.img = '/assets/ic_tag_faces_black_48px.svg';
+          this.img = '/assets/ic_tag_faces_black_24px.svg';
         }
-        this.img = this.user.profileImgUrl;
         this.profileForm.patchValue(user);
       });
   }
@@ -87,7 +86,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
       ['image/jpeg', 'image/png'].indexOf(fileList.item(0).type) > -1
     ) {
       this.srcLoaded = false;
-      console.log(fileList.item(0));
       const file = fileList.item(0);
       const path = 'profile-imgs/' + this.user.uid;
       this.fileService.upload(path, file).downloadUrl.subscribe(url => {
@@ -141,7 +139,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     errorCode: string,
     prerequired?: string[]
   ): boolean {
-    // console.log( this.user);
 
     if (prerequired && prerequired.length > 0) {
       for (let i = 0; i < prerequired.length; i++) {
