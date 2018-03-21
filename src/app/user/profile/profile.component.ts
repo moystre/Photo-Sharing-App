@@ -110,8 +110,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
     model.img = this.user.img;
     this.userService
       .update(model)
-      .then(() => console.log('saved'))
-      .catch(error => console.log('error', error));
+      .then(() => {
+        this.snack.open('Saved', null, {
+          duration: 2000,
+          verticalPosition: 'top',
+          panelClass: ['snack-color-success']
+        });
+      })
+      .catch(err => {
+        this.snack.open('Something went wrong', null, {
+          duration: 4000,
+          verticalPosition: 'top',
+          panelClass: ['snack-color-failure']
+        });
+      });
   }
 
   unsaved(): boolean {
