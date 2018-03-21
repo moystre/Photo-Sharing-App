@@ -11,7 +11,7 @@
         (hovering)="hovering($event)"
         (dropped)="uploadNewImg($event)"
         mat-card-avatar
-        [src]="isHovering? 'https://firebasestorage.googleapis.com/v0/b/photo-sharing-app-b1663.appspot.com/o/aza04Wm1_700w_0.jpg?alt=media&token=14039b08-86dd-4013-a812-8821bc281943' : img"
+        [src]="isHovering? '/assets/ic_backup_black_24px.svg' : img"
         alt="photo"
         (load)="srcLoaded = true">
           <mat-spinner

@@ -46,6 +46,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.getUserWithProfileUrl()
     .subscribe(user => {
       this.user = user;
+      if (this.user.img) {
+                  this.img = user.profileImgUrl;
+                } else {
+                  this.img = '/assets/ic_tag_faces_black_48px.svg';
+                }
       this.img = this.user.profileImgUrl;
       this.profileForm.patchValue(user);
     });
@@ -71,8 +76,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.fileService.upload(path, file).downloadUrl
             .subscribe(
               url => {
-                console.log('url', url);
                 this.img = url;
+                this.user.img = true;
+                         this.save();
                 this.hovering(false);
               }
             );
@@ -86,6 +92,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     save() {
     const model = this.profileForm.value as User;
     model.uid = this.user.uid;
+    model.img = this.user.img;
     this.userService.update(model)
       .then(() => console.log('saved'))
       .catch(error => console.log('error', error));
