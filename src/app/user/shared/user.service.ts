@@ -1,4 +1,4 @@
-import { FileService } from './../../file-system/file.service';
+import { FileService } from './../../shared/files/file.service';
 import { element } from 'protractor';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../auth/shared/auth.service';
