@@ -3,5 +3,6 @@ export class File {
   fileName: string;
   fileType: string;
   size: number;
+  displayName: string;
   owner?: string;
 }

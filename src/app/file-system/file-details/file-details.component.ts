@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { File } from '../shared/file';
 
 @Component({
   selector: 'psa-file-details',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileDetailsComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  file: File;
+  @Input()
+  url: string;
+  constructor() {}
 
   ngOnInit() {
   }

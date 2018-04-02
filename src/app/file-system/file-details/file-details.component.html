@@ -1,25 +1,26 @@
 <div fxLayout="row" fxLayoutAlign="center">
-<mat-card fxFlex="80">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Beach day at great</mat-card-title>
-    <mat-card-subtitle>21342314.jpg</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <mat-list dense>
-      <mat-list-item> created: "2018-03-01" </mat-list-item>
-      <mat-list-item> file: "3412341.jpg" </mat-list-item>
-      <mat-list-item> size: 234 kb </mat-list-item>
-     </mat-list>
-
-     </mat-card-content>
-  <mat-card-actions>
-         <button mat-raised-button color="warn">
-                <mat-icon>delete</mat-icon>
-                Delete
-              </button>
-        <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+  <mat-card fxFlex="80" *ngIf="file">
+    <mat-card-header>
+      <mat-card-title>{{file.displayName}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <img [style.max-width]="'100%'" [src]="url">
+      </div>
+      <mat-list dense fxFlex="40" fxFlexAlign="start" fxFlexOffset="1">
+        <mat-list-item> created: {{file.created}} </mat-list-item>
+        <mat-list-item> file: {{file.fileName}} </mat-list-item>
+        <mat-list-item> size: {{file.size}} </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="warn">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <div *ngIf="!file">
+    Loading ...
+  </div>
 </div>
