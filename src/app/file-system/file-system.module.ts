@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FileDetailsComponent } from './file-details/file-details.component';
 import { FileSystemContainerComponent } from './file-system-container/file-system-container.component';
 import { MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { FolderDetailsComponent } from './folder-details/folder-details.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { MatListModule, MatButtonModule, MatIconModule } from '@angular/material
     MatButtonModule,
     MatIconModule
   ],
-  declarations: [FileDetailsComponent, FileSystemContainerComponent],
+  declarations: [FileDetailsComponent, FileSystemContainerComponent, FolderDetailsComponent],
   providers: [],
   exports: [FileSystemContainerComponent]
 })
