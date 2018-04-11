@@ -1,0 +1,14 @@
+<div fxLayout="column" fxFill>
+  <div fxFill>
+    <psa-folder-details
+      [folders]="folderColumn.folders"
+      *ngIf="folderColumn"
+      [files]="folderColumn.files"
+      [displayName]="folderColumn.displayName"></psa-folder-details>
+    <psa-file-details
+      [file]="fileColumn.file"
+      [url]="fileColumn.url"
+      *ngIf="fileColumn"></psa-file-details>
+  </div>
+
+</div>
