@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { FileColumn } from './../shared/file-column';
+import { FolderColumn } from './../shared/folder-column';
+import { Column } from './../shared/column';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { File } from '../shared/file';
 import { Folder } from '../shared/folder';
 
@@ -8,30 +11,59 @@ import { Folder } from '../shared/folder';
   styleUrls: ['./file-system-container.component.css']
 })
 export class FileSystemContainerComponent implements OnInit {
-  folders: Folder[];
-  files: File[];
-  file: File;
-  url: string;
+  columns: Column[] = [];
+
   constructor() {
-    this.file = {
-      displayName: 'day at the beachh',
-      fileName: 'newFile.jpg',
+    const folders = [
+      {name: 'Summer 2017'},
+      {name: 'Winter 2017'},
+      {name: 'Spring 2017'}
+    ];
+    const files = [
+      {fileName: 'Great1.jpg', displayName: 'Great Day At the Beach1', created: '2017-10-10', mimeType: 'jpg', size: 1122},
+      {fileName: 'Great2.jpg', displayName: 'Great Day At the Beach2', created: '2017-10-11', mimeType: 'jpg', size: 132},
+      {fileName: 'Great3.jpg', displayName: 'Great Day At the Beach3', created: '2017-10-12', mimeType: 'jpg', size: 112}
+    ];
+    const folderColumn: FolderColumn = {
+      displayName: 'FolderOne',
+      files: files,
+      folders: folders
+    };
+
+    this.columns.push(folderColumn);
+
+    const files2 = [
+      {fileName: 'Great1.jpg', displayName: 'Funny day at the beach', created: '2017-10-10', fileType: 'jpg', size: 1122}
+    ];
+
+    const folders2 = [
+      {name: 'Summer is awesome'}
+    ];
+
+    const folderColumn2: FolderColumn = {
+      displayName: 'FolderTwo',
+      files: files2,
+      folders: folders2
+    };
+    this.columns.push(folderColumn2);
+
+    const file = {
+      displayName: 'Funny day at the Beach',
+      fileName: 'new.jpg',
       created: '10-10-2017',
       fileType: 'jpg',
-      owner: 'owner23242',
-      size: 333
+      owner: 'dsldjfknsdlnkflds',
+      size: 10293
     };
-    this.url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
-    this.folders = [
-      {name: 'one2017'},
-      {name: 'two2017'},
-      {name: 'three2017'}
-    ];
-    this.files = [
-      {fileName: 'asdfsdaf.jpg', displayName: 'KJDFKJASHDJKHASJDKH', created: '2017-12-05', fileType: 'jpg', size: 444},
-      {fileName: 'asdfasdfs.jpg', displayName: 'DKFJHAFHAEFHWE', created: '2017-01-01', fileType: 'jpg', size: 333},
-      {fileName: 'htwetgetgr.jpg', displayName: 'OIAEHFOEAH', created: '2017-04-02', fileType: 'jpg', size: 555}
-    ];
+    const url = 'https://material.angular.io/assets/img/examples/shiba2.jpg';
+    const fileColumn1: FileColumn = {
+      displayName: file.displayName,
+      file: file,
+      url: url
+    };
+
+    this.columns.push(fileColumn1);
+
 }
 
   ngOnInit() {}
