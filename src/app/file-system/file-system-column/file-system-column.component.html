@@ -2,9 +2,9 @@
   <div fxFill>
     <psa-folder-details
       (clickedFolder)="clickedFolder.emit($event)"
-      [folders]="folderColumn.folders"
+      [folders]="folderColumn.main.subFolders"
       *ngIf="folderColumn"
-      [files]="folderColumn.files"
+      [files]="folderColumn.main.files"
       [displayName]="folderColumn.displayName"></psa-folder-details>
     <psa-file-details
       [file]="fileColumn.file"
