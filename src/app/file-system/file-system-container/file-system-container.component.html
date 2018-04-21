@@ -1,4 +1,6 @@
 <div fxLayout="row">
-  <psa-file-system-column [column]="column" *ngFor="let column of this.columns">
+  <psa-file-system-column [column]="column"
+  (clickedFolder)="clickedFolder.emit($event)"
+  *ngFor="let column of this.columns">
   </psa-file-system-column>
 </div>

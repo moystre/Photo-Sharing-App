@@ -1,2 +1,4 @@
-<psa-file-system-container></psa-file-system-container>
-
+<psa-file-system-container
+  [columns]="columns"
+  (clickedFolder)="folderClicked($event)">
+</psa-file-system-container>

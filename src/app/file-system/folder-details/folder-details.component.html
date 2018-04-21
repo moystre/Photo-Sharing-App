@@ -6,7 +6,7 @@
     <mat-nav-list>
       <h3 mat-subheader>Folders</h3>
       <mat-list-item *ngFor="let folder of folders"
-                     (click)="clickedFolder.emit(folder)">
+      >
         <mat-icon mat-list-icon
                   color="accent">folder</mat-icon>
         <h4 mat-line>{{folder.name}}</h4>

@@ -1,7 +1,8 @@
 import { Column } from './../shared/column';
 import { FolderColumn } from './../shared/folder-column';
 import { FileColumn } from './../shared/file-column';
-import { Component, Input, OnInit } from '@angular/core';
+import { Folder } from '../shared/folder';
+import { Component, Input, OnInit, EventEmitter, Output  } from '@angular/core';
 
 @Component({
   selector: 'psa-file-system-column',
@@ -11,6 +12,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class FileSystemColumnComponent implements OnInit {
   @Input()
   column: Column;
+  @Output()
+  clickedFolder = new EventEmitter<Folder>();
   folderColumn: FolderColumn;
   fileColumn: FileColumn;
   constructor() { }
