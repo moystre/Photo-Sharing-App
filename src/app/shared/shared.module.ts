@@ -1,4 +1,6 @@
-import { FileService } from './files/file.service';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { FolderService } from './db/folder.service';
+import { FileService } from './storage/file.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,10 +20,11 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
     MatToolbarModule,
     MatIconModule,
     FlexLayoutModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFirestoreModule
   ],
   declarations: [ToolbarComponent, MarginIconComponent, UploadDirective],
   exports: [ToolbarComponent, MarginIconComponent, UploadDirective],
-  providers: [FileService]
+  providers: [FileService, FolderService]
 })
 export class SharedModule {}
