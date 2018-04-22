@@ -1,4 +1,4 @@
-import { FileService } from './../../shared/files/file.service';
+import { FileService } from './../../shared/storage/file.service';
 import { MatSnackBar } from '@angular/material';
 import { UserService } from './../../user/shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

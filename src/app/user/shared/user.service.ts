@@ -1,4 +1,4 @@
-import { FileService } from './../../shared/files/file.service';
+import { FileService } from './../../shared/storage/file.service';
 import { element } from 'protractor';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../auth/shared/auth.service';
@@ -47,6 +47,7 @@ export class UserService {
               authUser.middleName = dbUser.middleName;
               authUser.lastName = dbUser.lastName;
               authUser.img = dbUser.img;
+              authUser.rootFolder = dbUser.rootFolder;
             }
             return authUser;
           });
