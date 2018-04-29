@@ -1,4 +1,4 @@
-import { FileService } from './../../shared/storage/file.service';
+import { FileStorageService } from './../../shared/storage/file-storage.service';
 import { element } from 'protractor';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../auth/shared/auth.service';
@@ -16,7 +16,7 @@ export class UserService {
   constructor(
     private authService: AuthService,
     private angularFireStore: AngularFirestore,
-    private fileService: FileService
+    private fileStorageService: FileStorageService
   ) {}
 
   documentRef: AngularFirestoreDocument<User>;
@@ -61,7 +61,7 @@ export class UserService {
           observable.next(user);
         });
       }
-      return this.fileService.downloadUrlProfile(user.uid).map(url => {
+      return this.fileStorageService.downloadUrlProfile(user.uid).map(url => {
         user.profileImgUrl = url;
         return user;
       });

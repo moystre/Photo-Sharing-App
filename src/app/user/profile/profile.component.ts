@@ -1,4 +1,4 @@
-import { FileService } from './../../shared/storage/file.service';
+import { FileStorageService } from './../../shared/storage/file-storage.service';
 import { MatSnackBar } from '@angular/material';
 import { UserService } from './../../user/shared/user.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private fileService: FileService,
+    private fileStorageService: FileStorageService,
     private formBuilder: FormBuilder,
     private snack: MatSnackBar
   ) {
@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.srcLoaded = false;
       const file = fileList.item(0);
       const path = 'profile-imgs/' + this.user.uid;
-      this.fileService.upload(path, file).downloadUrl.subscribe(url => {
+      this.fileStorageService.upload(path, file).downloadUrl.subscribe(url => {
         this.img = url;
         this.user.img = true;
         this.save();
